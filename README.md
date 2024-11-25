@@ -1,48 +1,22 @@
-# goexpert-auction
-Projeto do Laboratório "Concorrência com Golang - Leilão" do treinamento GoExpert(FullCycle).
+# go-expert-challenge-auction
 
+## Como Iniciar o Projeto
 
+1. **Subir o MongoDB e a Aplicação**
+   Execute o seguinte comando para iniciar os serviços:
+   ```bash
+   docker compose up -d
+   ```
 
-## O desafio
-Adicionar uma nova funcionalidade ao projeto já existente para o leilão fechar automaticamente a partir de um tempo definido.
+2. **Configuração de Variáveis de Ambiente**
+   O arquivo `.env` contém as variáveis de ambiente que controlam o comportamento do sistema:
+   
+   - `AUCTION_EXPIRED`: Define o tempo de expiração de um leilão. Valor padrão: **20 segundos**.
+   - `FETCH_EXPIRED_INTERVAL`: Controla o intervalo de verificação para identificar leilões expirados. Valor padrão: **10 segundos**.
 
-Toda rotina de criação do leilão e lances já está desenvolvida, entretanto, [o projeto clonado](https://github.com/devfullcycle/labs-auction-goexpert) necessita de melhoria: adicionar a rotina de fechamento automático a partir de um tempo.
+## Como Executar os Testes
 
-Para essa tarefa, você utilizará o go routines e deverá se concentrar no processo de criação de leilão (auction). A validação do leilão (auction) estar fechado ou aberto na rotina de novos lançes (bid) já está implementado.
-
-
-
-## Como rodar o projet
-``` shell
-## put the docker-compose containers up
-make up 
-
-## put the docker-compose containers down
-make down
-
-## make some request
-make run
+Execute os testes utilizando o seguinte comando:
+```bash
+docker compose exec app go test ./internal/infra/database/auction -v
 ```
-
-
-
-## Funcionalidades da Linguagem Utilizadas
-- context
-- net/http
-- encoding/json
-- testing
-- testify
-
-
-
-## Requisitos: implementação
-- [ ] Uma função que irá calcular o tempo do leilão, baseado em parâmetros previamente definidos em variáveis de ambiente
-- [ ] Uma nova go routine que validará a existência de um leilão (auction) vencido (que o tempo já se esgotou) e que deverá realizar o update, fechando o leilão (auction);
-- [ ] Um teste para validar se o fechamento está acontecendo de forma automatizada;
-
-
-
-## Requisitos: entrega
-- [x] O código-fonte completo da implementação.
-- [x] Documentação explicando como rodar o projeto em ambiente dev.
-- [x] Utilize docker/docker-compose para podermos realizar os testes de sua aplicação.

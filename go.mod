@@ -1,4 +1,4 @@
-module fullcycle-auction_go
+module go-expert-challenge-auction
 
 go 1.20
 
